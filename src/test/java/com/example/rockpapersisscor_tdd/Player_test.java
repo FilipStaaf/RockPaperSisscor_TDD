@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Player_create_test {
+public class Player_test {
 
     private GameManager gameManager;
 
