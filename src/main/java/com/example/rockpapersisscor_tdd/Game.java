@@ -6,4 +6,8 @@ public class Game {
     public Game(Player user) {
         this.player1 = user;
     }
+
+    public Player getUser() {
+        return player1;
+    }
 }

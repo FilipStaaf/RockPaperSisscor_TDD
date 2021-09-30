@@ -17,8 +17,18 @@ public class Player_test {
     public void test_player_is_created() {
 
         Player player = gameManager.createPlayer("IronMan");
-
         Assert.assertNotNull(player);
 
     }
+
+    @Test
+    public void test_player_name_is_correct() {
+
+        String name = "IronMan";
+        Player player = gameManager.createPlayer(name);
+        Assert.assertEquals(name, player.getName());
+
+    }
+
+
 }
