@@ -17,7 +17,6 @@ public class Game_test {
         mockMovePicker = new MockMovePicker();
     }
 
-
     @Test
     public void test_game_is_created() {
         Player player = gameManager.createPlayer("SomeName", randomMovePicker);

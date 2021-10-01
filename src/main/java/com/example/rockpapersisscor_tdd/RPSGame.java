@@ -1,18 +1,20 @@
 package com.example.rockpapersisscor_tdd;
 
-import com.example.rockpapersisscor_tdd.service.MovePicker;
+public class RPSGame {
 
-import java.util.Scanner;
+    private UserInput userInput;
+    private UserOutput userOutput;
+    private RandomMovePicker randomMovePicker;
 
-public class GameManager {
+    public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
 
-    Scanner scan = new Scanner(System.in);
-    RandomMovePicker randomMovePicker;
-    ConsoleMovePicker consoleMovePicker;
-    Game game;
-    String userChoice = "";
+        this.userInput = userInput;
+        this.userOutput = userOutput;
+        this.randomMovePicker = randomMovePicker;
+    }
 
-    public void GameManager() {
+    public void playGame() {
+
 
         System.out.println("Play against the computer press 1, play against another player press 2");
         userChoice = scan.nextLine();
@@ -20,7 +22,7 @@ public class GameManager {
             System.out.println(" GMB1 " + game.getUser());
             Player player = game.getComputerPlayer();
             game.getComputerPlayer();
-           // game.Winner("Arne", "Ironman");
+            // game.Winner("Arne", "Ironman");
             System.out.println(player + " GM1 " + game.getUser() + game.getComputerPlayer());
         }
         if (userChoice == "2") {
@@ -30,13 +32,4 @@ public class GameManager {
             System.out.println(player + " GM " + game.getUser());
         }
     }
-
-    public Player createPlayer(String name, MovePicker movePicker) {
-        return new Player(name, movePicker);
-    }
-
-    public Game createGame(Player player) {
-        return new Game(player);
-    }
-
 }
