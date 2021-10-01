@@ -1,5 +1,9 @@
 package com.example.rockpapersisscor_tdd;
 
+import com.example.rockpapersisscor_tdd.service.Move;
+
+import java.util.Scanner;
+
 public class RPSGame {
 
     private UserInput userInput;
@@ -17,19 +21,27 @@ public class RPSGame {
 
 
         System.out.println("Play against the computer press 1, play against another player press 2");
-        userChoice = scan.nextLine();
-        if (userChoice == "1") {
-            System.out.println(" GMB1 " + game.getUser());
-            Player player = game.getComputerPlayer();
-            game.getComputerPlayer();
+
+        if (userInput.equals("1") ) {
+            System.out.println(" GMB1 " + Game.getUser());
+            Player player = Game.getComputerPlayer();
+            Game.getComputerPlayer();
             // game.Winner("Arne", "Ironman");
-            System.out.println(player + " GM1 " + game.getUser() + game.getComputerPlayer());
+            System.out.println(player + " GM1 " + Game.getUser() + Game.getComputerPlayer());
         }
-        if (userChoice == "2") {
-            System.out.println(" GMB2 " + game.getUser());
-            Player player = game.getUser();
-            game.getUser().makeUserMove();
-            System.out.println(player + " GM " + game.getUser());
+        if (userInput.equals("2")) {
+            System.out.println(" GMB2 " + Game.getUser());
+            Player player = Game.getUser();
+            Game.getUser().makeUserMove();
+            System.out.println(player + " GM " + Game.getUser());
         }
+    }
+    // player2.moves.contains
+    public GameResult getGameResult(GameResult gameResult) {
+
+
+
+
+        return GameResult.LOSE;
     }
 }

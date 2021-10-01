@@ -1,18 +1,18 @@
 package com.example.rockpapersisscor_tdd;
 
 public class Game {
-    private final Player player2;
-    private Player player1;
+    private static Player player2;
+    private static Player player1;
 
     public Game(Player user) {
         this.player2 = user;
     }
 
-    public Player getComputerPlayer() {
+    public static Player getComputerPlayer() {
         return player2;
     }
 
-    public Player getUser() {
+    public static Player getUser() {
         return player1;
     }
 

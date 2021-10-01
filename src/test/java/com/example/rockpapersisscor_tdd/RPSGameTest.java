@@ -35,7 +35,7 @@ class RPSGameTest {
         rpsGame.playGame();
 
         //then
-        assertEquals(GameResult.LOSE, rpsGame.getGameResult());
+        assertEquals(GameResult.LOSE, rpsGame.getGameResult(GameResult.LOSE));
 
     }
 
