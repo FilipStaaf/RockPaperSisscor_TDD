@@ -16,7 +16,7 @@ public class Game_test {
         randomMovePicker = new RandomMovePicker();
         mockMovePicker = new MockMovePicker();
     }
-
+/*
     @Test
     public void test_game_is_created() {
         Player player = gameManager.createPlayer("SomeName", randomMovePicker);
@@ -56,6 +56,8 @@ public class Game_test {
 
       // Assert.assertEquals(player2, WinnerEvaluater.getWinner());
     }
+
+ */
 }
 
 

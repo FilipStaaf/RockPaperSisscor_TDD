@@ -7,17 +7,18 @@ import lombok.Value;
 @Value
 public class Player {
     private String name;
-    private MovePicker movePicker;
+    private String move;
 
-    public Player(String name, MovePicker movePicker) {
+    public Player(String name, String move) {
         this.name = name;
-        this.movePicker = movePicker;
+        this.move= move;
     }
 
     public String getName() {
         return name;
     }
 
+/*
     public void makeMove() {
         Move move = movePicker.get();
 
@@ -26,4 +27,6 @@ public class Player {
         Move move = movePicker.get();
 
     }
+
+ */
 }

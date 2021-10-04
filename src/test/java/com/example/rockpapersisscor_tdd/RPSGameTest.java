@@ -43,7 +43,7 @@ class RPSGameTest {
 
         //given
         when(userInput.readKeyboard()).thenReturn("1", "Arne", "ROCK");
-        when(randomMovePicker.get()).thenReturn(Move.SCISSORS);
+        when(randomMovePicker.get()).thenReturn(Move.SCISSOR);
 
         //when
         rpsGame.playGame();
@@ -53,8 +53,21 @@ class RPSGameTest {
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
 
     }
+    @Test
+    void draw() {
 
+        //given
+        when(userInput.readKeyboard()).thenReturn("1", "Arne", "SCISSOR");
+        when(randomMovePicker.get()).thenReturn(Move.SCISSOR);
 
+        //when
+        rpsGame.playGame();
+       // rpsGame.winnerEvaluator();
+        //then
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2"));
+        assertEquals(GameResult.DRAW, rpsGame.getGameResult());
+
+    }
 
 
     /*

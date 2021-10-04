@@ -13,7 +13,7 @@ public class GameManager {
     String userChoice = "";
 
     public void GameManager() {
-
+   /*
         System.out.println("Play against the computer press 1, play against another player press 2");
         userChoice = scan.nextLine();
         if (userChoice == "1") {
@@ -37,6 +37,6 @@ public class GameManager {
 
     public Game createGame(Player player) {
         return new Game(player);
-    }
+   */ }
 
 }
