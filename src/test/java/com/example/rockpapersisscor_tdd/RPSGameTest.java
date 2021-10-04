@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class RPSGameTest {
     RPSGame rpsGame;
@@ -18,14 +17,14 @@ class RPSGameTest {
     @BeforeEach
     void setUp() {
         userInput = mock(UserInput.class);
-        userOutput = new UserOutput();
+        userOutput = mock(UserOutput.class);
         randomMovePicker = mock(RandomMovePicker.class);
         rpsGame = new RPSGame(userInput, userOutput, randomMovePicker);
 
     }
 
     @Test
-    void name() {
+    void lose() {
 
         //given
         when(userInput.readKeyboard()).thenReturn("1", "Arne", "ROCK");
@@ -35,9 +34,27 @@ class RPSGameTest {
         rpsGame.playGame();
 
         //then
-        assertEquals(GameResult.LOSE, rpsGame.getGameResult(GameResult.LOSE));
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2"));
+        assertEquals(GameResult.LOSE, rpsGame.getGameResult());
 
     }
+    @Test
+    void win() {
+
+        //given
+        when(userInput.readKeyboard()).thenReturn("1", "Arne", "ROCK");
+        when(randomMovePicker.get()).thenReturn(Move.SCISSORS);
+
+        //when
+        rpsGame.playGame();
+
+        //then
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2"));
+        assertEquals(GameResult.WIN, rpsGame.getGameResult());
+
+    }
+
+
 
 
     /*

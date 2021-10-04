@@ -9,6 +9,7 @@ public class RPSGame {
     private UserInput userInput;
     private UserOutput userOutput;
     private RandomMovePicker randomMovePicker;
+    private GameResult gameResult;
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
 
@@ -19,29 +20,28 @@ public class RPSGame {
 
     public void playGame() {
 
+        userOutput.print("Play against the computer press 1, play against another player press 2");
+        String command = userInput.readKeyboard();
 
-        System.out.println("Play against the computer press 1, play against another player press 2");
-
-        if (userInput.equals("1") ) {
-            System.out.println(" GMB1 " + Game.getUser());
-            Player player = Game.getComputerPlayer();
-            Game.getComputerPlayer();
+        if (command.equals("1") ) {
+           // userOutput.print(" GMB1 " + Game.getUser());
+           // Player player = Game.getComputerPlayer();
+          //  Game.getComputerPlayer();
             // game.Winner("Arne", "Ironman");
-            System.out.println(player + " GM1 " + Game.getUser() + Game.getComputerPlayer());
+           // System.out.println(player + " GM1 " + Game.getUser() + Game.getComputerPlayer());
+            gameResult = GameResult.LOSE;
         }
-        if (userInput.equals("2")) {
+        /*
+        if (command.equals("2")) {
             System.out.println(" GMB2 " + Game.getUser());
             Player player = Game.getUser();
             Game.getUser().makeUserMove();
             System.out.println(player + " GM " + Game.getUser());
         }
+
+         */
     }
-    // player2.moves.contains
-    public GameResult getGameResult(GameResult gameResult) {
-
-
-
-
-        return GameResult.LOSE;
+    public GameResult getGameResult() {
+        return gameResult;
     }
 }
