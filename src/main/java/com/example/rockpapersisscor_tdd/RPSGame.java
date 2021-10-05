@@ -15,6 +15,7 @@ public class RPSGame {
     private RandomMovePicker randomMovePicker = new RandomMovePicker();
     private GameResult gameResult;
     private Player player;
+    boolean player2 = false;
     List<GameResult> points = new ArrayList<>();
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
@@ -49,8 +50,6 @@ public class RPSGame {
     public GameResult getGameResult() {
         return gameResult;
     }
-
-    List<GameResult> points = new ArrayList<>();
 
     int player1points;
     int player2points;
@@ -88,7 +87,7 @@ public class RPSGame {
     }
     public void testing(String userName,Move move){
         Player player1 = createPlayer(userName, move);
-        Player computer = createPlayer("Computer", randomMovePicker.get());
+        Player computer = createPlayer("Computer", randomMovePicker.getMove());
         gameResult = winnerEvaluator(player1, computer);
         points.add(gameResult);
     }

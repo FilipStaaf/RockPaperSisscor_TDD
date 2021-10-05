@@ -12,4 +12,9 @@ public class ConsoleMovePicker implements MovePicker {
         Move usersMove = Move.valueOf(scanner.nextLine().toUpperCase());
         return usersMove;
     }
+
+    @Override
+    public Move setMove() {
+        return null;
+    }
 }

@@ -4,6 +4,9 @@ import com.example.rockpapersisscor_tdd.service.Move;
 import com.example.rockpapersisscor_tdd.service.MovePicker;
 import lombok.Value;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 @Value
 public class Player {
     private String name;
@@ -24,14 +27,17 @@ public class Player {
     }
 
     //get the moves
-    public String getMove(Scanner input) {
+    public Move getMove(Scanner input) {
         System.out.println("Enter your move: ");
-        String move = input.nextLine();
-        if (move.length() < 1) {
-            move = "";
+        String stringMove = input.nextLine().toUpperCase(Locale.ROOT);
+        if (stringMove.equals("ROCK")) return Move.ROCK;
+        if (stringMove.equals("SCISSOR")){return Move.SCISSOR;}
+        if (stringMove.equals("PAPER")){return Move.PAPER;}
+        else{
+            return null;
         }
-        return move;
+
+
     }
 
- */
 }
