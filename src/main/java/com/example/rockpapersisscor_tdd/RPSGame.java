@@ -16,17 +16,14 @@ public class RPSGame {
     int player1points = 0;
     int player2points = 0;
     boolean whilechecker = false;
-    List<GameResult> points = new ArrayList<>();
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
-
         this.userInput = userInput;
         this.userOutput = userOutput;
         this.randomMovePicker = randomMovePicker;
     }
 
     public void playGame() {
-
         userOutput.print("Play against the computer press 1");
         String command = userInput.readKeyboard();
 
