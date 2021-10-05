@@ -34,7 +34,7 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2 "));
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
         assertEquals(GameResult.LOSE, rpsGame.getGameResult());
     }
 
@@ -46,7 +46,7 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2 "));
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
     }
 
@@ -54,11 +54,11 @@ class RPSGameTest {
     void test_user_draw_success() {
         //Given
         when(userInput.readKeyboard()).thenReturn("1", "Arne", "SCISSOR");
-        when(consoleMovePicker.getMove()).thenReturn(Move.SCISSOR);
+        when(randomMovePicker.getMove()).thenReturn(Move.SCISSOR);
         //When
         rpsGame.playGame();
         //Then
-      verify(userOutput, times(1)).print(eq("Play against the computer press 1, play against another player press 2 "));
+      verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
        assertEquals(GameResult.DRAW, rpsGame.getGameResult());
     }
 
