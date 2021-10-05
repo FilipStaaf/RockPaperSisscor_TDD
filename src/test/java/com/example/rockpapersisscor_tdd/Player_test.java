@@ -17,7 +17,7 @@ public class Player_test {
     @Test
     public void test_player_is_created() {
 
-        Player player = gameManager.createPlayer("IronMan", randomMovePicker);
+           Player player = gameManager.createPlayer("IronMan", randomMovePicker);
         Assert.assertNotNull(player);
         System.out.println("Player have been created" + player);
     }
