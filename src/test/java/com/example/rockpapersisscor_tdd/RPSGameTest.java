@@ -1,5 +1,6 @@
 package com.example.rockpapersisscor_tdd;
 
+import com.example.rockpapersisscor_tdd.service.GameResult;
 import com.example.rockpapersisscor_tdd.service.Move;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,10 +68,8 @@ class RPSGameTest {
         //Given
         Player player1 = new Player("arne", Move.ROCK);
         rpsGame.player2points = 2;
-
         //when
         rpsGame.printOutPoints(player1);
-
         //Then
         verify(userOutput, times(1)).print("arne Score: 0 Computer Score: 2");
     }
