@@ -1,7 +1,6 @@
 package com.example.rockpapersisscor_tdd;
 
 import com.example.rockpapersisscor_tdd.service.Move;
-import com.example.rockpapersisscor_tdd.service.MovePicker;
 import lombok.Value;
 
 import java.util.Locale;

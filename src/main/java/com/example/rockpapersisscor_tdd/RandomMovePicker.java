@@ -14,9 +14,4 @@ public class RandomMovePicker implements MovePicker {
         return MOVES[ThreadLocalRandom.current().nextInt(MOVES.length)];
     }
 
-    @Override
-    public Move setMove() {
-        return null;
-    }
-
 }
