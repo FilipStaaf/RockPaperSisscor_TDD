@@ -10,7 +10,8 @@ public class RandomMovePicker implements MovePicker {
     private static final Move[] MOVES = Move.values();
 
     @Override
-    public Move get() {
+    public Move getMove() {
         return MOVES[ThreadLocalRandom.current().nextInt(MOVES.length)];
     }
+
 }

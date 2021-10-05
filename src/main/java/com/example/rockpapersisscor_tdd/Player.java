@@ -11,21 +11,26 @@ public class Player {
 
     public Player(String name, Move move) {
         this.name = name;
-        this.move= move;
+        this.move = move;
     }
 
-    public String getName() {
+    static String getName(Scanner input) {
+        System.out.println("Enter your name: ");
+        String name = input.nextLine();
+        if (name.length() < 1) {
+            name = "";
+        }
         return name;
     }
 
-/*
-    public void makeMove() {
-        Move move = movePicker.get();
-
-    }
-    public void makeUserMove() {
-        Move move = movePicker.get();
-
+    //get the moves
+    public String getMove(Scanner input) {
+        System.out.println("Enter your move: ");
+        String move = input.nextLine();
+        if (move.length() < 1) {
+            move = "";
+        }
+        return move;
     }
 
  */

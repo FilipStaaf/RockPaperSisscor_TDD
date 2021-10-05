@@ -1,8 +1,8 @@
 package com.example.rockpapersisscor_tdd;
 
 import com.example.rockpapersisscor_tdd.service.Move;
-import com.example.rockpapersisscor_tdd.service.MovePicker;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,10 +11,10 @@ public class RPSGame {
 
     private UserInput userInput;
     private UserOutput userOutput;
-    private Move move;
-    private RandomMovePicker randomMovePicker = new RandomMovePicker();
+    private RandomMovePicker randomMovePicker;
     private GameResult gameResult;
-    MovePicker movePicker;
+    private Player player;
+    List<GameResult> points = new ArrayList<>();
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
 
@@ -59,9 +59,12 @@ public class RPSGame {
     pointsArray[1] = player2points;
 */
     public GameResult winnerEvaluator(Player player1, Player player2) {
+        String ROCK = String.valueOf(Move.ROCK);
+        String PAPER = String.valueOf(Move.PAPER);
+        String SCISSOR = String.valueOf(Move.SCISSOR);
 
         if (player1.getMove() == player2.getMove()) {
-            userOutput.print("Its a draw!");
+            System.out.println(player1.getMove() + " " + player2.getMove());
             return GameResult.DRAW;
         }
 
@@ -94,7 +97,7 @@ public class RPSGame {
 
 
 
-    public Player createPlayer(String name, Move move) {
+    public Player createPlayer(String name, String move) {
         return new Player(name, move);
     }
 
