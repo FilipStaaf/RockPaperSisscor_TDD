@@ -1,29 +1,38 @@
 package com.example.rockpapersisscor_tdd;
 
-import com.example.rockpapersisscor_tdd.service.Move;
-import com.example.rockpapersisscor_tdd.service.MovePicker;
 import lombok.Value;
+
+import java.util.Scanner;
 
 @Value
 public class Player {
+    //create name and move
     private String name;
-    private MovePicker movePicker;
+    private String move;
 
-    public Player(String name, MovePicker movePicker) {
+    //create player and go to game
+    public Player(String name, String move) {
         this.name = name;
-        this.movePicker = movePicker;
+        this.move = move;
     }
 
-    public String getName() {
+    static String getName(Scanner input){
+        System.out.println("Enter your name: ");
+        String name = input.nextLine();
+        if(name.length() <1){
+            name = "";
+        }
         return name;
     }
 
-    public void makeMove() {
-        Move move = movePicker.get();
-
+    //get the moves
+    public String getMove(Scanner input) {
+        System.out.println("Enter your move: ");
+        String move = input.nextLine();
+        if(move.equals(input)){
+            move = "";
+        }
+        return move;
     }
-    public void makeUserMove() {
-        Move move = movePicker.get();
 
-    }
 }

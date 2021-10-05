@@ -7,11 +7,9 @@ import java.util.Scanner;
 
 public class ConsoleMovePicker implements MovePicker {
     @Override
-    public Move get() {
+    public Move getMove() {
         Scanner scanner = new Scanner(System.in);
-
         Move usersMove = Move.valueOf(scanner.nextLine().toUpperCase());
-
         return usersMove;
     }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserInput {
     Scanner scan = new Scanner(System.in);
 
-    public  String readKeyboard() {
+    public String readKeyboard() {
         return scan.nextLine();
     }
 }
