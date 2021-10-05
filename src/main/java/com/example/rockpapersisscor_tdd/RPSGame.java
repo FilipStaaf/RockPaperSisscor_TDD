@@ -1,6 +1,7 @@
 package com.example.rockpapersisscor_tdd;
 
 import com.example.rockpapersisscor_tdd.service.Move;
+import com.example.rockpapersisscor_tdd.service.MovePicker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,9 @@ public class RPSGame {
             String userName = userInput.readKeyboard();
             userOutput.print("Type in Rock, Paper or Scissor ");
             String move = userInput.readKeyboard();
-
             Player player1 = createPlayer(userName, move);
             Player computer = createPlayer("Computer", RandomGenerator());
-            System.out.println(" reslutet " + gameResult + "POINTS" + points);
+            System.out.println(" reslutet  " + gameResult + "POINTS" + points);
             points.add(gameResult);
             gameResult = winnerEvaluator(player1, computer);
             System.out.println(gameResult + "RR" + points);

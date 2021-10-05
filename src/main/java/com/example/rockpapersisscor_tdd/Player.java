@@ -16,10 +16,10 @@ public class Player {
         this.move = move;
     }
 
-    static String getName(Scanner input){
+    static String getName(Scanner input) {
         System.out.println("Enter your name: ");
         String name = input.nextLine();
-        if(name.length() <1){
+        if (name.length() < 1) {
             name = "";
         }
         return name;
@@ -29,7 +29,7 @@ public class Player {
     public String getMove(Scanner input) {
         System.out.println("Enter your move: ");
         String move = input.nextLine();
-        if(move.equals(input)){
+        if (move.length() < 1) {
             move = "";
         }
         return move;

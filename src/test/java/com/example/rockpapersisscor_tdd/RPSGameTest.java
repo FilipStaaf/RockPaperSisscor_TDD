@@ -63,13 +63,6 @@ class RPSGameTest {
     }
 
     @Test
-    void test_name() {
-        Player player = new Player("Ironman", "ROCK");
-        player.getName();
-        assertEquals("Ironman", player.getName());
-    }
-
-    @Test
     void win() {
         //Given want to give the gameResult and return winner
         when(rpsGame.getGameResult()).thenReturn(rpsGame.getWins());
