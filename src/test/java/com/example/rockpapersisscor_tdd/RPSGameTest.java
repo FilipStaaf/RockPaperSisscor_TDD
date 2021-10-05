@@ -1,6 +1,5 @@
 package com.example.rockpapersisscor_tdd;
 
-import com.example.rockpapersisscor_tdd.service.GameResult;
 import com.example.rockpapersisscor_tdd.service.Move;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ class RPSGameTest {
     private UserInput userInput;
     private UserOutput userOutput;
     private Player player;
-
     private RandomMovePicker randomMovePicker;
 
     @BeforeEach
@@ -49,7 +47,8 @@ class RPSGameTest {
         verify(userOutput, times(1));
         System.out.println(eq("Play against the computer press 1"));
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
-    }
+        assertEquals(2,rpsGame.player1points);
+ }
 
     @Test
     void test_user_draw_success() {
@@ -59,8 +58,20 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1));
-        System.out.println(eq("Play against the computer press 1"));
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
         assertEquals(GameResult.DRAW, rpsGame.getGameResult());
+    }
+
+    @Test
+    void test_score_board() {
+        //Given
+        Player player1 = new Player("arne", Move.ROCK);
+        rpsGame.player2points = 2;
+
+        //when
+        rpsGame.printOutPoints(player1);
+
+        //Then
+        verify(userOutput, times(1)).print("arne Score: 0 Computer Score: 2");
     }
 }
