@@ -12,16 +12,13 @@ class RPSGameTest {
     private UserInput userInput;
     private UserOutput userOutput;
     private Player player;
-
     private RandomMovePicker randomMovePicker;
-    private ConsoleMovePicker consoleMovePicker;
 
     @BeforeEach
     void setUp() {
         userInput = mock(UserInput.class);
         userOutput = mock(UserOutput.class);
         randomMovePicker = mock(RandomMovePicker.class);
-        consoleMovePicker = mock(ConsoleMovePicker.class);
         player = new Player("", null);
         rpsGame = new RPSGame(userInput, userOutput, randomMovePicker);
     }
@@ -36,6 +33,8 @@ class RPSGameTest {
         //Then
         verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
         assertEquals(GameResult.LOSE, rpsGame.getGameResult());
+        assertEquals(2,rpsGame.player2points);
+
     }
 
     @Test
@@ -48,7 +47,8 @@ class RPSGameTest {
         //Then
         verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
-    }
+        assertEquals(2,rpsGame.player1points);
+ }
 
     @Test
     void test_user_draw_success() {
@@ -58,9 +58,20 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-      verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
-       assertEquals(GameResult.DRAW, rpsGame.getGameResult());
+        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
+        assertEquals(GameResult.DRAW, rpsGame.getGameResult());
     }
 
+    @Test
+    void test_score_board() {
+        //Given
+        Player player1 = new Player("arne", Move.ROCK);
+        rpsGame.player2points = 2;
 
+        //when
+        rpsGame.printOutPoints(player1);
+
+        //Then
+        verify(userOutput, times(1)).print("arne Score: 0 Computer Score: 2");
+    }
 }
