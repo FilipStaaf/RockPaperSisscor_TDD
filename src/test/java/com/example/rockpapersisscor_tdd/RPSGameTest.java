@@ -1,5 +1,6 @@
 package com.example.rockpapersisscor_tdd;
 
+import com.example.rockpapersisscor_tdd.service.GameResult;
 import com.example.rockpapersisscor_tdd.service.Move;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,14 +15,12 @@ class RPSGameTest {
     private Player player;
 
     private RandomMovePicker randomMovePicker;
-    private ConsoleMovePicker consoleMovePicker;
 
     @BeforeEach
     void setUp() {
         userInput = mock(UserInput.class);
         userOutput = mock(UserOutput.class);
         randomMovePicker = mock(RandomMovePicker.class);
-        consoleMovePicker = mock(ConsoleMovePicker.class);
         player = new Player("", null);
         rpsGame = new RPSGame(userInput, userOutput, randomMovePicker);
     }
@@ -34,7 +33,8 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
+        verify(userOutput, times(1));
+        System.out.println(eq("Play against the computer press 1"));
         assertEquals(GameResult.LOSE, rpsGame.getGameResult());
     }
 
@@ -46,7 +46,8 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
+        verify(userOutput, times(1));
+        System.out.println(eq("Play against the computer press 1"));
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
     }
 
@@ -58,9 +59,8 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-      verify(userOutput, times(1)).print(eq("Play against the computer press 1"));
-       assertEquals(GameResult.DRAW, rpsGame.getGameResult());
+        verify(userOutput, times(1));
+        System.out.println(eq("Play against the computer press 1"));
+        assertEquals(GameResult.DRAW, rpsGame.getGameResult());
     }
-
-
 }

@@ -10,9 +10,8 @@ public class Main {
     private static RandomMovePicker randomMovePicker = new RandomMovePicker();
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Rock, Paper and Scissors! Let´s play! ");
+        userOutput.print("Welcome to Rock, Paper and Scissors! Let´s play! ");
         RPSGame rpsGame = new RPSGame(userInput, userOutput, randomMovePicker);
         rpsGame.playGame();
-
     }
 }

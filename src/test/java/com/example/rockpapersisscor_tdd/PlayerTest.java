@@ -11,11 +11,14 @@ class PlayerTest {
 
     private Player player;
     private UserInput userInput;
+    private UserOutput userOutput;
     private RPSGame rpsGame;
+
     @BeforeEach
     void setUp() {
         player = new Player("", null);
         userInput = mock(UserInput.class);
+        userOutput = mock(UserOutput.class);
         rpsGame = mock(RPSGame.class);
     }
 
@@ -24,7 +27,7 @@ class PlayerTest {
         Player player = new Player("Ironman", Move.ROCK);
         player.getName();
         assertEquals("Ironman", player.getName());
-        System.out.println("Name is correct in test_name: " + player.getName());
+        userOutput.print("Name is correct in test_name: " + player.getName());
     }
 
     @Test
@@ -32,6 +35,6 @@ class PlayerTest {
         Player player = new Player("Ironman", Move.ROCK);
         player.getMove();
         assertEquals(Move.ROCK, player.getMove());
-        System.out.println("Move is correct in test_move: " + player.getMove());
+        userOutput.print("Move is correct in test_move: " + player.getMove());
     }
 }
