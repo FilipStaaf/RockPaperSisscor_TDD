@@ -7,9 +7,9 @@ import lombok.Value;
 @Value
 public class Player {
     private String name;
-    private String move;
+    private Move move;
 
-    public Player(String name, String move) {
+    public Player(String name, Move move) {
         this.name = name;
         this.move= move;
     }

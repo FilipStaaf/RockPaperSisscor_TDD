@@ -1,8 +1,8 @@
 package com.example.rockpapersisscor_tdd;
 
 import com.example.rockpapersisscor_tdd.service.Move;
+import com.example.rockpapersisscor_tdd.service.MovePicker;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,8 +11,10 @@ public class RPSGame {
 
     private UserInput userInput;
     private UserOutput userOutput;
-    private RandomMovePicker randomMovePicker;
+    private Move move;
+    private RandomMovePicker randomMovePicker = new RandomMovePicker();
     private GameResult gameResult;
+    MovePicker movePicker;
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
 
@@ -29,13 +31,17 @@ public class RPSGame {
         if (command.equals("1")) {
             userOutput.print(" Type in user name ");
             String userName = userInput.readKeyboard();
+            boolean whilechecker = false;
+            while (!whilechecker){
             userOutput.print("Type in Rock , Paper or Scissor");
-            String move = userInput.readKeyboard().toUpperCase(Locale.ROOT);
-            Player player1 = createPlayer(userName, move);
-            Player computer = createPlayer("Computer", RandomGenerator());
-            gameResult = winnerEvaluator(player1, computer);
-            System.out.println(" reslutet " + gameResult);
-            points.add(gameResult);
+            String movechoice = userInput.readKeyboard().toUpperCase(Locale.ROOT);
+            if (movechoice.equals("ROCK")){move = Move.ROCK; testing(userName,move); whilechecker = true;}
+            if (movechoice.equals("SCISSOR")){move = Move.SCISSOR;testing(userName,move); whilechecker = true;}
+            if (movechoice.equals("PAPER")){move = Move.PAPER;testing(userName,move); whilechecker = true;}
+            else{
+                userOutput.print("Wrong input");
+            }
+            }
         }
     }
 
@@ -53,27 +59,21 @@ public class RPSGame {
     pointsArray[1] = player2points;
 */
     public GameResult winnerEvaluator(Player player1, Player player2) {
-        String ROCK = String.valueOf(Move.ROCK);
-        String PAPER = String.valueOf(Move.PAPER);
-        String SCISSOR = String.valueOf(Move.SCISSOR);
 
         if (player1.getMove() == player2.getMove()) {
-            System.out.println(player1.getMove() + " " + player2.getMove());
+            userOutput.print("Its a draw!");
             return GameResult.DRAW;
         }
-        if (player1.getMove() == ROCK && player2.getMove() == SCISSOR) {
-            player1points++;
-            return GameResult.WIN;
-        }
-        if (player1.getMove() == PAPER && player2.getMove() == ROCK) {
-            player1points++;
-            return GameResult.WIN;
-        }
-        if (player1.getMove() == SCISSOR && player2.getMove() == PAPER) {
+
+        if (player1.getMove().equals(Move.ROCK) && player2.getMove().equals(Move.SCISSOR) ||
+                player1.getMove().equals(Move.PAPER) && player2.getMove().equals(Move.ROCK)||
+                player1.getMove().equals(Move.SCISSOR) && player2.getMove().equals(Move.PAPER) ) {
+            userOutput.print("You won the round!");
             player1points++;
             return GameResult.WIN;
         } else {
             player2points++;
+            userOutput.print("You lost the round");
             System.out.println(player1.getMove() + " " + player2.getMove() + " Computer Score: " + player2points);
             return GameResult.LOSE;
         }
@@ -85,10 +85,16 @@ public class RPSGame {
     public void getLose(){
 
     }
+    public void testing(String userName,Move move){
+        Player player1 = createPlayer(userName, move);
+        Player computer = createPlayer("Computer", randomMovePicker.get());
+        gameResult = winnerEvaluator(player1, computer);
+        points.add(gameResult);
+    }
 
 
 
-    public Player createPlayer(String name, String move) {
+    public Player createPlayer(String name, Move move) {
         return new Player(name, move);
     }
 
