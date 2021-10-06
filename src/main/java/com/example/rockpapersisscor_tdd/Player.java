@@ -30,13 +30,13 @@ public class Player {
         System.out.println("Enter your move: ");
         String stringMove = input.nextLine().toUpperCase(Locale.ROOT);
         if (stringMove.equals("ROCK")) return Move.ROCK;
-        if (stringMove.equals("SCISSOR")){return Move.SCISSOR;}
-        if (stringMove.equals("PAPER")){return Move.PAPER;}
-        else{
+        if (stringMove.equals("SCISSOR")) {
+            return Move.SCISSOR;
+        }
+        if (stringMove.equals("PAPER")) {
+            return Move.PAPER;
+        } else {
             return null;
         }
-
-
     }
-
 }
