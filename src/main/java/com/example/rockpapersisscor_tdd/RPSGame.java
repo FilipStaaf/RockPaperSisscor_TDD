@@ -8,14 +8,14 @@ import java.util.Locale;
 
 public class RPSGame {
 
+    int player1points = 0;
+    int player2points = 0;
+    boolean whilechecker = false;
     private UserInput userInput;
     private UserOutput userOutput;
     private Move move;
     private RandomMovePicker randomMovePicker;
     private GameResult gameResult;
-    int player1points = 0;
-    int player2points = 0;
-    boolean whilechecker = false;
 
     public RPSGame(UserInput userInput, UserOutput userOutput, RandomMovePicker randomMovePicker) {
         this.userInput = userInput;
@@ -30,19 +30,31 @@ public class RPSGame {
         if (command.equals("1")) {
             userOutput.print(" Type in user name ");
             String userName = userInput.readKeyboard();
-            while (!whilechecker){
-            userOutput.print("Type in Rock , Paper or Scissor");
-            String movechoice = userInput.readKeyboard().toUpperCase(Locale.ROOT);
-            if (movechoice.equals("ROCK")){move = Move.ROCK; createPlayersAndPlayOutRound(userName,move); }
-            else if (movechoice.equals("SCISSOR")){move = Move.SCISSOR;
-                createPlayersAndPlayOutRound(userName,move);}
-            else if (movechoice.equals("PAPER")){move = Move.PAPER;
-                createPlayersAndPlayOutRound(userName,move);}
-            else{
-                userOutput.print("Wrong input");
-            }
+            while (!whilechecker) {
+                userOutput.print("Type in Rock , Paper or Scissor");
+                String movechoice = userInput.readKeyboard().toUpperCase(Locale.ROOT);
+                try {
+                    move = Move.valueOf(movechoice);
+                    createPlayersAndPlayOutRound(userName, move);
+                    whilechecker = checkGameOver();
+                } catch (IllegalArgumentException e) {
+                    userOutput.print("Wrong input");
+                }
             }
         }
+    }
+
+    private boolean checkGameOver() {
+        if (gameResult == GameResult.DRAW) {
+            return false;
+        }
+        if (player1points >= 2) {
+            return true;
+        }
+        if (player2points >= 2) {
+            return true;
+        }
+        return false;
     }
 
     public GameResult getGameResult() {
@@ -57,29 +69,29 @@ public class RPSGame {
             //For test
             //whilechecker = true;
             return GameResult.DRAW;
-        }
-        else if (player1.getMove().equals(Move.ROCK) && player2.getMove().equals(Move.SCISSOR) ||
-                player1.getMove().equals(Move.PAPER) && player2.getMove().equals(Move.ROCK)||
-                player1.getMove().equals(Move.SCISSOR) && player2.getMove().equals(Move.PAPER) ) {
+        } else if (player1.getMove().equals(Move.ROCK) && player2.getMove().equals(Move.SCISSOR) ||
+                player1.getMove().equals(Move.PAPER) && player2.getMove().equals(Move.ROCK) ||
+                player1.getMove().equals(Move.SCISSOR) && player2.getMove().equals(Move.PAPER)) {
             player1points++;
-            if (player1points >= 2){
+            if (player1points >= 2) {
                 printOutPoints(player1);
                 userOutput.print(player1.getName() + " Won the game!");
-                whilechecker = true;
-            }
-            else{
+
+            } else {
                 printOutPoints(player1);
-                userOutput.print("You won the round!");}
+                userOutput.print("You won the round!");
+            }
             return GameResult.WIN;
         } else {
             player2points++;
-            if (player2points >= 2){
+            if (player2points >= 2) {
                 printOutPoints(player1);
                 userOutput.print(player2.getName() + " Won the game!");
-                whilechecker = true;
-            }else{
+
+            } else {
                 printOutPoints(player1);
-                userOutput.print("You lost the round");}
+                userOutput.print("You lost the round");
+            }
             return GameResult.LOSE;
         }
     }
@@ -88,7 +100,7 @@ public class RPSGame {
         userOutput.print(player1.getName() + " Score: " + player1points + " Computer Score: " + player2points);
     }
 
-    public void createPlayersAndPlayOutRound(String userName, Move move){
+    public void createPlayersAndPlayOutRound(String userName, Move move) {
         Player player1 = createPlayer(userName, move);
         Player computer = createPlayer("Computer", randomMovePicker.getMove());
         gameResult = winnerEvaluator(player1, computer);
