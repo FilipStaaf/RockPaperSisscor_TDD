@@ -1,9 +1,8 @@
 package com.example.rockpapersisscor_tdd;
 
+import com.example.rockpapersisscor_tdd.service.GameResult;
 import com.example.rockpapersisscor_tdd.service.Move;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class RPSGame {

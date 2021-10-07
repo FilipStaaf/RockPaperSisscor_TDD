@@ -25,15 +25,14 @@ class RPSGameTest {
     }
 
     @Test
-    void test_user_loose_success() {
+    void test_user_lose_success() {
         //Given
         when(userInput.readKeyboard()).thenReturn("1", "Arne", "ROCK","rock");
         when(randomMovePicker.getMove()).thenReturn(Move.PAPER);
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1));
-        System.out.println(eq("Play against the computer press 1"));
+        verify(userOutput, times(1)).print("Play against the computer press 1");
         assertEquals(GameResult.LOSE, rpsGame.getGameResult());
     }
 
@@ -45,8 +44,7 @@ class RPSGameTest {
         //When
         rpsGame.playGame();
         //Then
-        verify(userOutput, times(1));
-        System.out.println(eq("Play against the computer press 1"));
+        verify(userOutput, times(1)).print("Play against the computer press 1");
         assertEquals(GameResult.WIN, rpsGame.getGameResult());
         assertEquals(2,rpsGame.player1points);
  }
